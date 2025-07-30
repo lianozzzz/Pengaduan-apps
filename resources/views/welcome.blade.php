@@ -6,12 +6,12 @@
    <title>Cyber Chip | Home</title>
 
    <!-- Styles -->
-   <link rel="stylesheet" href="{{ asset('template/assets/css/animate.css') }}">
+   <link rel="stylesheet" href="{{ asset('template/landing/assets/css/animate.css') }}">
    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-   <link rel="stylesheet" href="{{ asset('template/assets/bootstrap/bootstrap.min.css') }}"> <!-- FIXED from 'bootstarp' -->
-   <link rel="stylesheet" href="{{ asset('template/assets/css/super-classes.css') }}">
-   <link rel="stylesheet" href="{{ asset('template/assets/css/style.css') }}">
-   <link rel="stylesheet" href="{{ asset('template/assets/css/mobile.css') }}">
+   <link rel="stylesheet" href="{{ asset('template/landing/assets/bootstrap/bootstrap.min.css') }}">
+   <link rel="stylesheet" href="{{ asset('template/landing/assets/css/super-classes.css') }}">
+   <link rel="stylesheet" href="{{ asset('template/landing/assets/css/style.css') }}">
+   <link rel="stylesheet" href="{{ asset('template/landing/assets/css/mobile.css') }}">
 </head>
 <body>
 
@@ -23,7 +23,7 @@
             <div class="header-con">
                <nav class="navbar navbar-expand-lg navbar-light p-0">
                   <a class="navbar-brand p-0" href="/">
-                     <img src="{{ asset('template/assets/logo/logo-polseknobk.png') }}" width="80" alt="logo-img" class="img-fluid">
+                     <img src="{{ asset('template/landing/assets/logo/logo-polseknobk.png') }}" width="80" alt="logo-img" class="img-fluid">
                   </a>
                   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
                      <span class="navbar-toggler-icon"></span>
@@ -55,7 +55,7 @@
                   </div>
                   <div class="col-lg-5">
                      <div class="banner-right-con wow slideInRight">
-                        <img src="{{ asset('template/assets/images/slider-item-img1.png') }}" alt="banner image" class="img-fluid">
+                        <img src="{{ asset('template/landing/assets/image/slider-item-img1.png') }}" alt="banner image" class="img-fluid">
                      </div>
                   </div>
                </div>
@@ -77,7 +77,7 @@
             @for ($i = 1; $i <= 6; $i++)
             <div class="col-lg-2 col-md-4 col-6 mb-4">
                <div class="partner-box text-center">
-                  <img src="{{ asset('template/assets/images/slider-item-img' . $i . '.png') }}" alt="slider-img-{{ $i }}" class="img-fluid">
+                  <img src="{{ asset('template/landing/assets/image/slider-item-img' . $i . '.png') }}" alt="slider-img-{{ $i }}" class="img-fluid">
                </div>
             </div>
             @endfor
@@ -92,7 +92,7 @@
       <div class="container">
          <div class="row">
             <div class="col-lg-6">
-               <img src="{{ asset('template/assets/logo/logo-polseknobk.png') }}" alt="logo-polseknobk" class="img-fluid">
+               <img src="{{ asset('template/landing/assets/logo/logo-polseknobk.png') }}" alt="logo-polseknobk" class="img-fluid">
             </div>
             <div class="col-lg-6">
                <h5>Kami adalah</h5>
@@ -111,11 +111,11 @@
 </footer>
 
 <!-- Scripts -->
-<script src="{{ asset('template/assets/js/jquery-3.6.0.min.js') }}"></script>
-<script src="{{ asset('template/assets/js/popper.min.js') }}"></script>
-<script src="{{ asset('template/assets/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('template/assets/js/wow.js') }}"></script>
-<script src="{{ asset('template/assets/js/custom-script.js') }}"></script>
+<script src="{{ asset('template/landing/assets/js/jquery-3.6.0.min.js') }}"></script>
+<script src="{{ asset('template/landing/assets/js/popper.min.js') }}"></script>
+<script src="{{ asset('template/landing/assets/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('template/landing/assets/js/wow.js') }}"></script>
+<script src="{{ asset('template/landing/assets/js/custom-script.js') }}"></script>
 <script>new WOW().init();</script>
 
 </body>
