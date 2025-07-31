@@ -14,11 +14,11 @@
     <!-- FAVICONS ICON -->
     <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
 
-    <link href="{{ asset('template/assets') }}/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+    <link href="public/template/assets/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('template/assets') }}/vendor/nouislider/nouislider.min.css">
     <!-- Style css -->
-    <link href="{{ asset('template/assets') }}/css/style.css" rel="stylesheet">
-    <link href="{{ asset('template/assets') }}/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="public/template/assets/css/style.css" rel="stylesheet">
+    <link href="public/template/assets/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
     <!-- Toastr CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 
@@ -58,7 +58,7 @@
         {{-- logo disini start --}}
         <div class="nav-header">
             <a href="{{ route('dashboard.admin') }}" class="brand-logo">
-                <img src="{{ asset('template/assets/logo/logo-polsek.jpg') }}" width="53" class="logo-abbr"
+                <img src="public/template/assets/logo/logo-polsek.jpg " width="53" class="logo-abbr"
                     alt="">
                 <div class="brand-title" width="124px" height="33px">
                     <h6 style="text-align: center; font-weight: bold; text-transform: uppercase; font-size: 18px;">
@@ -131,20 +131,20 @@
         Scripts
     ***********************************-->
     <!-- Required vendors -->
-    <script src="{{ asset('template/assets') }}/vendor/global/global.min.js"></script>
-    <script src="{{ asset('template/assets') }}/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="public/template/assets/vendor/global/global.min.js"></script>
+    <script src="public/template/assets/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
 
 
     <!-- Dashboard 1 -->
-    <script src="{{ asset('template/assets') }}/js/dashboard/dashboard-1.js"></script>
+    <script src="public/template/assets/js/dashboard/dashboard-1.js"></script>
 
-    <script src="{{ asset('template/assets') }}/js/custom.min.js"></script>
-    <script src="{{ asset('template/assets') }}/js/dlabnav-init.js"></script>
+    <script src="public/template/assets/js/custom.min.js"></script>
+    <script src="public/template/assets/js/dlabnav-init.js"></script>
 
 
     <!-- Datatable -->
-    <script src="{{ asset('template/assets') }}/vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="{{ asset('template/assets') }}/js/plugins-init/datatables.init.js"></script>
+    <script src="public/template/assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="public/template/assets/js/plugins-init/datatables.init.js"></script>
 
     <!-- Toastr JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

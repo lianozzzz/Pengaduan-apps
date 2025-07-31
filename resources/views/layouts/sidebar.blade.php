@@ -4,7 +4,7 @@
             <li class="dropdown header-profile">
                 <a class="nav-link" href="{{ route('dashboard.admin') }}" role="button" data-bs-toggle="dropdown">
                     {{-- profile foto --}}
-                    <img src="{{ asset('template/assets/logo/logo-polsek.jpg') }}" width="20" alt="" />
+                    <img src="public/template/assets/logo/logo-polsek.jpg " width="20" alt="" />
                     {{-- profile foto --}}
                     <div class="header-info ms-3">
                         <span class="font-w600 ">Hi,<b>{{ $userName->username }}</b></span>
