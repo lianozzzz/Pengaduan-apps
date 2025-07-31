@@ -19,7 +19,7 @@
 
     <!-- FAVICONS ICON -->
     <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
-    <link href="{{ asset('template/assets') }}/css/style.css" rel="stylesheet">
+    <link href="public/template/assets/css/style.css" rel="stylesheet">
 
 </head>
 <style>
@@ -46,7 +46,7 @@
                             <div class="col-xl-12">
                                 <div class="auth-form">
                                     {{-- <div class="text-center mb-3">
-										<a href="index.html"><img src="{{ asset('template/assets/logo/logo-polsek.jpg') }}" width="80px" alt=""></a>
+										<a href="index.html"><img src="public/template/assets/logo/logo-polsek.jpg " width="80px" alt=""></a>
 									</div> --}}
                                     <div class="mb-2">
                                         <h2 class="text-center fw-bold">Registrasi</h2>
@@ -150,9 +150,9 @@
         Scripts
     ***********************************-->
     <!-- Required vendors -->
-    <script src="{{ asset('template/assets') }}/vendor/global/global.min.js"></script>
-    <script src="{{ asset('template/assets') }}/js/custom.min.js"></script>
-    <script src="{{ asset('template/assets') }}/js/dlabnav-init.js"></script>
+    <script src="public/template/assets/vendor/global/global.min.js"></script>
+    <script src="public/template/assets/js/custom.min.js"></script>
+    <script src="public/template/assets/js/dlabnav-init.js"></script>
 
 </body>
 
