@@ -101,9 +101,9 @@
         Scripts
     ***********************************-->
     <!-- Required vendors -->
-    <script src="{{ asset('template/assets') }}/vendor/global/global.min.js"></script>
-    <script src="{{ asset('template/assets') }}/js/custom.min.js"></script>
-    <script src="{{ asset('template/assets') }}/js/dlabnav-init.js"></script>
+    <script src="public/template/assets/vendor/global/global.min.js"></script>
+    <script src="public/template/assets/js/custom.min.js"></script>
+    <script src="public/template/assets/js/dlabnav-init.js"></script>
 
 </body>
 
