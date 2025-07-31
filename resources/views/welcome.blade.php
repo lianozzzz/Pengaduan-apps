@@ -74,14 +74,49 @@
             <h2>Mulai dari sekarang keamanan lingkungan bukan cuma tugas polisi tapi tugas kita semua.</h2>
          </div>
          <div class="row wow fadeInUp">
-            @for ($i = 1; $i <= 6; $i++)
-            <div class="col-lg-2 col-md-4 col-6 mb-4">
-               <div class="partner-box text-center">
-                  <img src="public/template/landing/assets/image/slider-item-img{{ $i }}.png" alt="slider-img-{{ $i }}" class="img-fluid">
+                  <div class="col-lg-2 col-md-4 col-6">
+                     <div class="partner-box text-center mb-lg-0 mb-4">
+                        <figure class="mb-0">
+                           <img src="assets/image/slider-item-img1.png" alt="" class="img-fluid">
+                        </figure>
+                     </div>
+                  </div>
+                  <div class="col-lg-2 col-md-4 col-6">
+                     <div class="partner-box text-center mb-lg-0 mb-4">
+                        <figure class="mb-0">
+                           <img src="assets/image/slider-item-img2.png" alt="" class="img-fluid">
+                        </figure>
+                     </div>
+                  </div>
+                  <div class="col-lg-2 col-md-4 col-6">
+                     <div class="partner-box text-center mb-lg-0 mb-4">
+                        <figure class="mb-0">
+                           <img src="assets/image/slider-item-img3.png" alt="" class="img-fluid">
+                        </figure>
+                     </div>
+                  </div>
+                  <div class="col-lg-2 col-md-4 col-6">
+                     <div class="partner-box text-center">
+                        <figure class="mb-0">
+                           <img src="assets/image/slider-item-img4.png" alt="" class="img-fluid">
+                        </figure>
+                     </div>
+                  </div>
+                  <div class="col-lg-2 col-md-4 col-6">
+                     <div class="partner-box text-center">
+                        <figure class="mb-0">
+                           <img src="assets/image/slider-item-img5.png" alt="" class="img-fluid">
+                        </figure>
+                     </div>
+                  </div>
+                  <div class="col-lg-2 col-md-4 col-6">
+                     <div class="partner-box text-center">
+                        <figure class="mb-0">
+                           <img src="assets/image/slider-item-img6.png" alt="" class="img-fluid">
+                        </figure>
+                     </div>
+                  </div>
                </div>
-            </div>
-            @endfor
-         </div>
       </div>
    </div>
 </section>
