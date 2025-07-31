@@ -53,11 +53,7 @@
                         <a href="{{ route('login') }}" class="contact-btn">Sampaikan Pengaduan Sekarang</a>
                      </div>
                   </div>
-                  <div class="col-lg-5">
-                     <div class="banner-right-con wow slideInRight">
-                        <img src="public/template/landing/assets/image/slider-item-img1.png" alt="banner image" class="img-fluid">
-                     </div>
-                  </div><div class="col-lg-5 col-md-5 col-sm-12">
+                  <div class="col-lg-5 col-md-5 col-sm-12">
                            <div class="banner-right-con wow slideInRight">
                               <figure class="mb-0">
                                  {{-- <img src="assets/image/banner-right-img.png" alt="banner-right-img"> --}}
