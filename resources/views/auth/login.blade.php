@@ -19,7 +19,7 @@
 
     <!-- FAVICONS ICON -->
     <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
-    <link href="{{ asset('template/assets') }}/css/style.css" rel="stylesheet">
+    <link href="public/template/assets/css/style.css" rel="stylesheet">
 
 </head>
 
@@ -34,7 +34,7 @@
                                 <div class="auth-form">
                                     <div class="text-center mb-3">
                                         <a href="index.html"><img
-                                                src="{{ asset('template/assets/logo/logo-polsek.jpg') }}" width="80px"
+                                                src="public/template/assets/logo/logo-polsek.jpg " width="80px"
                                                 alt=""></a>
                                     </div>
                                     <div class="mb-4 ">
