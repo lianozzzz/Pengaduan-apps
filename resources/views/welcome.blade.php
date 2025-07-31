@@ -23,7 +23,7 @@
             <div class="header-con">
                <nav class="navbar navbar-expand-lg navbar-light p-0">
                   <a class="navbar-brand p-0" href="/">
-                     <img src="public/template/landing/assets/logo/logo-polseknobk.png" width="80" alt="logo-img" class="img-fluid">
+                     <img src="public/template/assets/logo/logo-polseknobk.png" width="80" alt="logo-img" class="img-fluid">
                   </a>
                   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
                      <span class="navbar-toggler-icon"></span>
@@ -129,7 +129,7 @@
       <div class="container">
          <div class="row">
             <div class="col-lg-6">
-               <img src="public/template/landing/assets/logo/logo-polseknobk.png" alt="logo-polseknobk" class="img-fluid">
+               <img src="public/template/assets/logo/logo-polseknobk.png" alt="logo-polseknobk" class="img-fluid">
             </div>
             <div class="col-lg-6">
                <h5>Kami adalah</h5>
