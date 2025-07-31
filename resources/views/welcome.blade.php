@@ -97,8 +97,11 @@
             <div class="col-lg-6">
                <h5>Kami adalah</h5>
                <h2>Polsek Bukit Kapur</h2>
-               <p>Polsek Bukit Kapur merupakan bagian integral dari Kepolisian Resor (Polres) Dumai...</p>
-               <p>Seiring dengan perkembangan wilayah dan peningkatan kebutuhan...</p>
+               <p>Polsek Bukit Kapur merupakan bagian integral dari Kepolisian Resor (Polres) Dumai yang bertugas menjaga keamanan dan ketertiban di wilayah Kecamatan Bukit Kapur, Kota Dumai, Provinsi Riau. Kecamatan Bukit Kapur sendiri berdiri berdasarkan Peraturan Pemerintah Nomor 8 Tahun 1979 tanggal 11 April 1979, yang memekarkan Desa Bagan Besar menjadi dua desa: Desa Bagan Besar dan Desa Bukit Kapur. Kedua desa ini kemudian digabungkan untuk membentuk Kecamatan Bukit Kapur, dengan pusat pemerintahan berlokasi di Desa Bukit Kapur.
+                        </p>
+                        <p>
+                            Seiring dengan perkembangan wilayah dan peningkatan kebutuhan akan penegakan hukum, Polsek Bukit Kapur didirikan untuk melayani masyarakat setempat. Sebagai institusi penegak hukum di tingkat kecamatan, Polsek Bukit Kapur memiliki peran penting dalam pemeliharaan keamanan dan ketertiban masyarakat, penegakan hukum, serta pemberian perlindungan dan pelayanan kepada warga di wilayah hukumnya.
+                        </p>
             </div>
          </div>
       </div>
