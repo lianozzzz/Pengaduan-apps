@@ -120,7 +120,7 @@
     <!-- Halaman 1: Detail Pengaduan -->
     <div class="container-a4">
         <div class="text-center mb-3">
-            <img src="{{ asset('template/assets/logo/logo-polseknobk.png') }}" width="80" alt="Logo Polsek">
+            <img src="{{ asset('public/template/assets/logo/logo-polseknobk.png') }}" width="80" alt="Logo Polsek">
             <h4 class="mt-2 mb-0">LAPORAN PENGADUAN MASYARAKAT</h4>
             <h6 class="mb-3">Polsek Bukit Kapur</h6>
             <hr>
