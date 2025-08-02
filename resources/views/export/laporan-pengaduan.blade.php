@@ -184,62 +184,8 @@
 
             @foreach ($pengaduan->foto as $foto)
                 <div class="foto-item mb-4">
-                    @php
-                        // Multiple fallback paths
-                        $imagePaths = [
-                            // Path 1: Standard Laravel storage with symbolic link
-                            'storage/' . $foto->foto_kejadian,
-                            
-                            // Path 2: Direct access to storage (jika bisa diakses langsung)
-                            '../storage/app/public/' . $foto->foto_kejadian,
-                            
-                            // Path 3: Copy file to public and access
-                            'temp_images/' . basename($foto->foto_kejadian)
-                        ];
-                        
-                        $imageFound = false;
-                        $workingPath = null;
-                        
-                        // Check each path
-                        foreach($imagePaths as $path) {
-                            $fullPath = public_path($path);
-                            if(file_exists($fullPath)) {
-                                $workingPath = asset($path);
-                                $imageFound = true;
-                                break;
-                            }
-                        }
-                        
-                        // If no image found, try to copy from storage
-                        if(!$imageFound) {
-                            $storagePath = storage_path('app/public/' . $foto->foto_kejadian);
-                            if(file_exists($storagePath)) {
-                                // Create temp directory
-                                $tempDir = public_path('temp_images');
-                                if(!is_dir($tempDir)) {
-                                    mkdir($tempDir, 0755, true);
-                                }
-                                
-                                // Copy file to temp directory
-                                $tempFile = $tempDir . '/' . basename($foto->foto_kejadian);
-                                if(copy($storagePath, $tempFile)) {
-                                    $workingPath = asset('temp_images/' . basename($foto->foto_kejadian));
-                                    $imageFound = true;
-                                }
-                            }
-                        }
-                    @endphp
-                    
-                    @if($imageFound && $workingPath)
-                        <img src="{{ $workingPath }}" alt="Foto Kejadian {{ $index + 1 }}" class="img-fluid">
-                        <div class="foto-caption">Foto Kejadian {{ $index + 1 }}</div>
-                    @else
-                        <div class="alert alert-warning">
-                            <strong>Foto tidak dapat dimuat:</strong> {{ $foto->foto_kejadian }}
-                            <br><small>File path: {{ storage_path('app/public/' . $foto->foto_kejadian) }}</small>
-                            <br><small>File exists: {{ file_exists(storage_path('app/public/' . $foto->foto_kejadian)) ? 'Yes' : 'No' }}</small>
-                        </div>
-                    @endif
+                    <img src="{{ asset('storage/app/public/foto_pengaduan' . $foto->foto_kejadian) }}" alt="Foto Kejadian" class="img-fluid">
+                    <div class="foto-caption">Foto Kejadian</div>
                 </div>
             @endforeach
 
