@@ -184,7 +184,7 @@
 
             @foreach ($pengaduan->foto as $foto)
                 <div class="foto-item mb-4">
-                    <img src="{{ asset('storage/app/public/foto_pengaduan' . $foto->foto_kejadian) }}" alt="Foto Kejadian" class="img-fluid">
+                    <img src="{{ asset('storage/app/public/' . $foto->foto_kejadian) }}" alt="Foto Kejadian" class="img-fluid">
                     <div class="foto-caption">Foto Kejadian</div>
                 </div>
             @endforeach
