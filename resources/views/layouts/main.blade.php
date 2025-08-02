@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,20 +11,18 @@
     <title>Pengaduan Masyarakat</title>
 
     <!-- FAVICONS ICON -->
-    <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
+    <link rel="shortcut icon" type="image/png" href="{{ asset('images/favicon.png') }}" />
 
-    <link href="public/template/assets/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
-    <link rel="stylesheet" href="public/template/assets/vendor/nouislider/nouislider.min.css">
+    <link href="{{ asset('public/template/assets/vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('public/template/assets/vendor/nouislider/nouislider.min.css') }}">
     <!-- Style css -->
-    <link href="public/template/assets/css/style.css" rel="stylesheet">
-    <link href="public/template/assets/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="{{ asset('public/template/assets/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/template/assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
     <!-- Toastr CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
-
 </head>
 
 <body>
-
     <!--*******************
         Preloader start
     ********************-->
@@ -58,13 +55,11 @@
         {{-- logo disini start --}}
         <div class="nav-header">
             <a href="{{ route('dashboard.admin') }}" class="brand-logo">
-                <img src="public/template/assets/logo/logo-polsek.jpg " width="53" class="logo-abbr"
-                    alt="">
+                <img src="{{ asset('public/template/assets/logo/logo-polsek.jpg') }}" width="53" class="logo-abbr" alt="">
                 <div class="brand-title" width="124px" height="33px">
                     <h6 style="text-align: center; font-weight: bold; text-transform: uppercase; font-size: 18px;">
                         POLSEK BUKIT KAPUR
                     </h6>
-
                 </div>
             </a>
             <div class="nav-control">
@@ -79,18 +74,11 @@
         ***********************************-->
 
         <!--**********************************
-            Chat box start
-        ***********************************-->
-        <!--**********************************
-            Chat box End
-        ***********************************-->
-
-        <!--**********************************
             Header start
         ***********************************-->
         @include('layouts.navbar')
         <!--**********************************
-            Header end ti-comment-alt
+            Header end
         ***********************************-->
 
         <!--**********************************
@@ -109,8 +97,6 @@
             Content body end
         ***********************************-->
 
-
-
         <!--**********************************
             Footer start
         ***********************************-->
@@ -118,10 +104,6 @@
         <!--**********************************
             Footer end
         ***********************************-->
-
-
-
-
     </div>
     <!--**********************************
         Main wrapper end
@@ -131,20 +113,18 @@
         Scripts
     ***********************************-->
     <!-- Required vendors -->
-    <script src="public/template/assets/vendor/global/global.min.js"></script>
-    <script src="public/template/assets/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
-
+    <script src="{{ asset('public/template/assets/vendor/global/global.min.js') }}"></script>
+    <script src="{{ asset('public/template/assets/vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
 
     <!-- Dashboard 1 -->
-    <script src="public/template/assets/js/dashboard/dashboard-1.js"></script>
+    <script src="{{ asset('public/template/assets/js/dashboard/dashboard-1.js') }}"></script>
 
-    <script src="public/template/assets/js/custom.min.js"></script>
-    <script src="public/template/assets/js/dlabnav-init.js"></script>
-
+    <script src="{{ asset('public/template/assets/js/custom.min.js') }}"></script>
+    <script src="{{ asset('public/template/assets/js/dlabnav-init.js') }}"></script>
 
     <!-- Datatable -->
-    <script src="public/template/assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="public/template/assets/js/plugins-init/datatables.init.js"></script>
+    <script src="{{ asset('public/template/assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('public/template/assets/js/plugins-init/datatables.init.js') }}"></script>
 
     <!-- Toastr JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -167,7 +147,6 @@
             toastr.info("{{ session('info') }}");
         @endif
     </script>
-
 </body>
 
 </html>
