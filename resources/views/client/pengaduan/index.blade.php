@@ -118,7 +118,7 @@
                                                     @if ($data->foto->count())
                                                         @foreach ($data->foto as $f)
                                                             <div>
-                                                                <a href="{{ asset('storage/' . $f->foto_kejadian) }}"
+                                                                <a href="{{ asset('storage/app/public/' . $f->foto_kejadian) }}"
                                                                     target="_blank">
                                                                     Gambar {{ $loop->iteration }}
                                                                 </a>
