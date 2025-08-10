@@ -32,6 +32,11 @@ Route::get('/', function () {return view('welcome'); });
 Route::get('/registrasi', [LoginController::class, 'create'])->name('index.registrasi');
 Route::post('/registrasi/store', [LoginController::class, 'store'])->name('registrasi.store');
 
+ // Form lupa password
+Route::get('/forgot-password', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'showForgotForm'])->name('forgot.password');
+
+// Proses reset password
+Route::post('/forgot-password', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'resetPassword'])->name('forgot.password.post');
 
 
 // role untuk admin
@@ -77,11 +82,6 @@ Route::middleware(['auth', 'isUser'])->group(function () {
     Route::put('/pengaduan/user/update/{id}', [User_PengaduanController::class, 'update'])->name('userpengaduan.update');
     Route::delete('/pengaduan/user/delete/{id}', [User_PengaduanController::class, 'destroy'])->name('userpengaduan.destroy');
 
-    // Form lupa password
-    Route::get('/forgot-password', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'showForgotForm'])->name('forgot.password');
-
-    // Proses reset password
-    Route::post('/forgot-password', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'resetPassword'])->name('forgot.password.post');
 
 });
 
