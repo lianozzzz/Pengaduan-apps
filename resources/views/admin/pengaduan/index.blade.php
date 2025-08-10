@@ -116,10 +116,10 @@
                                                 </td>
 
                                                 <td>
-                                                    @if(!empty($item->lokasi))
-                                                        {{ explode('(', $item->lokasi)[0] }}
-                                                    @elseif(!empty($item->latitude) && !empty($item->longitude))
-                                                        {{ $item->latitude }}, {{ $item->longitude }}
+                                                    @if(!empty($data->lokasi))
+                                                        {{ explode('(', $data->lokasi)[0] }}
+                                                    @elseif(!empty($data->latitude) && !empty($data->longitude))
+                                                        {{ $data->latitude }}, {{ $data->longitude }}
                                                     @else
                                                         -
                                                     @endif
