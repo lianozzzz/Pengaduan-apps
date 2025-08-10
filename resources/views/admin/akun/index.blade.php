@@ -77,30 +77,9 @@
                             </div>
                             <div class="modal-body">
                                 <div class="mb-3">
-                                    <label>Nama Lengkap</label>
-                                    <input type="text" name="nama_lengkap" class="form-control"
-                                        value="{{ $userName->nama_lengkap }}" required>
-                                </div>
-                                <div class="mb-3">
                                     <label>Username</label>
                                     <input type="text" name="username" class="form-control"
                                         value="{{ $userName->username }}" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label>Jenis Kelamin</label>
-                                    <select name="jenis_kelamin" class="form-select" required>
-                                        <option value="Laki-Laki"
-                                            {{ $userName->jenis_kelamin == 'Laki-Laki' ? 'selected' : '' }}>Laki-Laki
-                                        </option>
-                                        <option value="Perempuan"
-                                            {{ $userName->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label>Tanggal Lahir</label>
-                                    <input type="date" name="tanggal_lahir" class="form-control"
-                                        value="{{ $userName->tanggal_lahir }}" required>
                                 </div>
                                 <div class="mb-3">
                                     <label>Nomor HP</label>
