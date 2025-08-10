@@ -31,6 +31,8 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name
 Route::get('/', function () {return view('welcome'); });
 Route::get('/registrasi', [LoginController::class, 'create'])->name('index.registrasi');
 Route::post('/registrasi/store', [LoginController::class, 'store'])->name('registrasi.store');
+Route::post('/reset-password/manual', [LoginController::class, 'resetPasswordManual'])
+    ->name('password.manual.update');
 
  
 

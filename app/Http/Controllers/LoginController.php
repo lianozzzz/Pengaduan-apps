@@ -63,4 +63,34 @@ class LoginController extends Controller
 
 }
 
+public function resetPasswordManual(Request $request)
+{
+    $request->validate([
+        'no_hp' => 'required|digits_between:10,13',
+        'username' => 'required|string',
+        'password' => 'required|string|min:6|confirmed',
+    ], [
+        'no_hp.required' => 'No HP wajib diisi.',
+        'username.required' => 'Username wajib diisi.',
+        'password.required' => 'Password baru wajib diisi.',
+        'password.min' => 'Password minimal 6 karakter.',
+        'password.confirmed' => 'Konfirmasi password tidak cocok.',
+    ]);
+
+    // Cari user berdasarkan no_hp & username
+    $user = User::where('no_hp', $request->no_hp)
+                ->where('username', $request->username)
+                ->first();
+
+    if (!$user) {
+        return back()->withErrors(['User tidak ditemukan atau data salah.']);
+    }
+
+    // Update password
+    $user->password = Hash::make($request->password);
+    $user->save();
+
+    return redirect()->route('login')->with('success', 'Password berhasil direset. Silakan login.');
+}
+
 }
