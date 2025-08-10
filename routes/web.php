@@ -11,6 +11,7 @@ use App\Http\Controllers\User_AkunControler;
 use App\Http\Controllers\User_DashboardController;
 use App\Http\Controllers\User_PengaduanController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 
 /*
@@ -79,7 +80,7 @@ Route::middleware(['auth', 'isUser'])->group(function () {
     // Form lupa password
     Route::get('/forgot-password', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'showForgotForm'])->name('forgot.password');
 
-// Proses reset password
+    // Proses reset password
     Route::post('/forgot-password', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'resetPassword'])->name('forgot.password.post');
 
 });
