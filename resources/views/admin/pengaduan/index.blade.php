@@ -95,6 +95,7 @@
                                             <th>#</th>
                                             <th>Nama</th>
                                             <th>Judul Laporan</th>
+                                            <th>Alamat Kejadian</th>
                                             <th>Gambar</th>
                                             <th>Tanggal Aduan</th>
                                             <th>Status</th>
@@ -112,6 +113,10 @@
 
                                                 <td class="text-start">
                                                     {{ $data->judul_pengaduan }}
+                                                </td>
+
+                                                <td class="text-start">
+                                                    {{ $data->lokasi ?? '-' }}
                                                 </td>
 
                                                 <td class="text-start">
