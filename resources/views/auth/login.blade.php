@@ -88,11 +88,11 @@
                                                 href="{{ route('index.registrasi') }}">Registrasi sekarang</a>
                                         </p>
                                         <p>
-                                            <a class="text-danger" href="{{ route('forgot.password') }}">Lupa Password?</a>
+                                            <a href="{{ route('password.request') }}">Lupa password?</a>
                                         </p>
                                     </div>
 
-                            
+        
                                 </div>
                             </div>
                         </div>
