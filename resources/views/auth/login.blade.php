@@ -87,6 +87,10 @@
                                         <p>Belum punya akun? <a class="text-primary"
                                                 href="{{ route('index.registrasi') }}">Registrasi sekarang</a></p>
                                     </div>
+
+                                    <p>
+                                    <a class="text-danger" href="{{ route('forgot.password') }}">Lupa Password?</a>
+                                    </p>
                                 </div>
                             </div>
                         </div>
