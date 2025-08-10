@@ -115,22 +115,7 @@
                                                     {{ $data->judul_pengaduan }}
                                                 </td>
 
-                                                <td>
-                                                    @php
-                                                        // Ambil lokasi dari database
-                                                        $lokasi = $data->lokasi;
-
-                                                        // Kalau mengandung koma dan angka desimal, kemungkinan besar koordinat
-                                                        if (preg_match('/^-?\d+\.\d+,\s*-?\d+\.\d+$/', trim($lokasi))) {
-                                                            $alamatManual = '-'; // Kosongkan kalau murni koordinat
-                                                        } else {
-                                                            // Hilangkan koordinat kalau formatnya gabungan alamat + koordinat
-                                                            $alamatManual = preg_replace('/\(\s*-?\d+\.\d+,\s*-?\d+\.\d+\s*\)/', '', $lokasi);
-                                                        }
-                                                    @endphp
-
-                                                    {{ trim($alamatManual) }}
-                                                </td>
+                                                <td>{{ explode('(', $item->lokasi)[0] }}</td>
 
                                                 <td class="text-start">
                                                     @if ($data->foto->count())
