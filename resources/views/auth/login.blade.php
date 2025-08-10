@@ -85,12 +85,14 @@
 
                                     <div class="new-account mt-3">
                                         <p>Belum punya akun? <a class="text-primary"
-                                                href="{{ route('index.registrasi') }}">Registrasi sekarang</a></p>
+                                                href="{{ route('index.registrasi') }}">Registrasi sekarang</a>
+                                        </p>
+                                        <p>
+                                            <a class="text-danger" href="{{ route('forgot.password') }}">Lupa Password?</a>
+                                        </p>
                                     </div>
 
-                                    <p>
-                                    <a class="text-danger" href="{{ route('forgot.password') }}">Lupa Password?</a>
-                                    </p>
+                            
                                 </div>
                             </div>
                         </div>
