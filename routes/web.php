@@ -11,7 +11,7 @@ use App\Http\Controllers\User_AkunControler;
 use App\Http\Controllers\User_DashboardController;
 use App\Http\Controllers\User_PengaduanController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\ForgotPasswordController;
+
 
 
 /*
@@ -32,12 +32,7 @@ Route::get('/', function () {return view('welcome'); });
 Route::get('/registrasi', [LoginController::class, 'create'])->name('index.registrasi');
 Route::post('/registrasi/store', [LoginController::class, 'store'])->name('registrasi.store');
 
- // Form lupa password
-Route::get('/forgot-password', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'showForgotForm'])->name('forgot.password');
-
-// Proses reset password
-Route::post('/forgot-password', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'resetPassword'])->name('forgot.password.post');
-
+ 
 
 // role untuk admin
 Route::middleware(['auth', 'isAdmin'])->group(function () {
