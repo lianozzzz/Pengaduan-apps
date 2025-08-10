@@ -115,7 +115,16 @@
                                                     {{ $data->judul_pengaduan }}
                                                 </td>
 
-                                                <td>{{ $item->lokasi }}</td>
+                                                <td>
+                                                    @if(!empty($item->lokasi))
+                                                        {{ explode('(', $item->lokasi)[0] }}
+                                                    @elseif(!empty($item->latitude) && !empty($item->longitude))
+                                                        {{ $item->latitude }}, {{ $item->longitude }}
+                                                    @else
+                                                        -
+                                                    @endif
+                                                </td>
+
 
                                                 <td class="text-start">
                                                     @if ($data->foto->count())
