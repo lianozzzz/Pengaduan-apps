@@ -75,17 +75,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Tutup"></button>
                             </div>
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <label>Nama Lengkap</label>
-                                    <input type="text" name="nama_lengkap"
-                                        class="form-control @error('nama_lengkap') is-invalid @enderror"
-                                        value="{{ old('nama_lengkap', $userName->nama_lengkap) }}" required>
-                                    @error('nama_lengkap')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
+                            <div class="modal-body">                    
                                 <div class="mb-3">
                                     <label>Username</label>
                                     <input type="text" name="username"
@@ -95,34 +85,6 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-
-                                <div class="mb-3">
-                                    <label>Jenis Kelamin</label>
-                                    <select name="jenis_kelamin"
-                                        class="form-select @error('jenis_kelamin') is-invalid @enderror" required>
-                                        <option value="">-- Pilih Jenis Kelamin --</option>
-                                        <option value="Laki-Laki"
-                                            {{ old('jenis_kelamin', $userName->jenis_kelamin) == 'Laki-Laki' ? 'selected' : '' }}>
-                                            Laki-Laki</option>
-                                        <option value="Perempuan"
-                                            {{ old('jenis_kelamin', $userName->jenis_kelamin) == 'Perempuan' ? 'selected' : '' }}>
-                                            Perempuan</option>
-                                    </select>
-                                    @error('jenis_kelamin')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="mb-3">
-                                    <label>Tanggal Lahir</label>
-                                    <input type="date" name="tanggal_lahir"
-                                        class="form-control @error('tanggal_lahir') is-invalid @enderror"
-                                        value="{{ old('tanggal_lahir', $userName->tanggal_lahir) }}" required>
-                                    @error('tanggal_lahir')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
                                 <div class="mb-3">
                                     <label>Nomor HP</label>
                                     <input type="text" name="no_hp"
