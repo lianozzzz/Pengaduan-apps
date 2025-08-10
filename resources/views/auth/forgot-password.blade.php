@@ -20,7 +20,7 @@
                                 </div>
                             @endif
 
-                            <form method="POST" action="{{ route('forgot.password.post') }}">
+                            <form action="{{ route('password.email') }}" method="POST">
                                 @csrf
                                 <div class="mb-3">
                                     <label>No HP</label>
