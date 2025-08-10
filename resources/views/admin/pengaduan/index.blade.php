@@ -115,7 +115,7 @@
                                                     {{ $data->judul_pengaduan }}
                                                 </td>
 
-                                                <td>{{ explode('(', $item->lokasi)[0] }}</td>
+                                                <<td>{{ $item->lokasi }}</td>
 
                                                 <td class="text-start">
                                                     @if ($data->foto->count())
