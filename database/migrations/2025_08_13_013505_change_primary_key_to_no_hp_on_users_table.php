@@ -13,10 +13,14 @@ return new class extends Migration {
     }
 
     public function down(): void
-    {
-        DB::statement('ALTER TABLE users DROP PRIMARY KEY');
-        DB::statement('ALTER TABLE users MODIFY id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY');
-        DB::statement('ALTER TABLE users MODIFY no_hp VARCHAR(12) NULL');
-    }
+{
+    DB::statement('ALTER TABLE users DROP PRIMARY KEY');
+    DB::statement('ALTER TABLE users ADD PRIMARY KEY (id)');
+    DB::statement('ALTER TABLE users MODIFY id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT');
+    
+    // Kalau sebelumnya no_hp nullable, bisa ubah juga jika perlu
+    DB::statement('ALTER TABLE users MODIFY no_hp VARCHAR(12) NULL');
+}
+
 };
 
