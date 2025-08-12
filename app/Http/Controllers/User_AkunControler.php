@@ -9,16 +9,16 @@ use Illuminate\Support\Facades\Validator;
 
 class User_AkunControler extends Controller
 {
-      public function index()
+    public function index()
     {
         $userName = auth()->user();
         return view('client.akun.index', compact('userName'));
     }
 
     // Proses update data akun user
-    public function update(Request $request, $id)
+    public function update(Request $request, $no_hp) // ubah dari $id ke $no_hp
     {
-        $user = User::findOrFail($id);
+        $user = User::findOrFail($no_hp); // cari berdasarkan primary key no_hp
 
         $validator = Validator::make($request->all(), [
             'nama_lengkap' => [
@@ -27,10 +27,14 @@ class User_AkunControler extends Controller
                 'max:30',
                 'regex:/^[A-Za-z\s]+$/'
             ],
-            'username' => 'required|string|max:15|unique:users,username,' . $user->id,
+            // validasi username unik, tapi abaikan username user yang sedang login
+            'username' => 'required|string|max:15|unique:users,username,' . $user->no_hp . ',no_hp',
+            
             'jenis_kelamin' => 'required|in:Laki-Laki,Perempuan',
             'tanggal_lahir' => 'required|date',
-            'no_hp' => 'required|digits_between:10,12|numeric',
+            // validasi no_hp unik, tapi abaikan no_hp user yang sedang login
+            'no_hp' => 'required|digits_between:10,12|numeric|unique:users,no_hp,' . $user->no_hp . ',no_hp',
+            
             'password' => 'nullable|string|min:6|max:10',
         ], [
             'nama_lengkap.required' => 'Nama lengkap wajib diisi.',
@@ -50,6 +54,7 @@ class User_AkunControler extends Controller
             'no_hp.required' => 'Nomor HP wajib diisi.',
             'no_hp.digits_between' => 'Nomor HP harus terdiri dari 10 sampai 12 digit angka.',
             'no_hp.numeric' => 'Nomor HP hanya boleh berisi angka.',
+            'no_hp.unique' => 'No HP sudah digunakan.',
 
             'password.min' => 'Password minimal 6 karakter.',
             'password.max' => 'Password maksimal 10 karakter.',
@@ -61,7 +66,6 @@ class User_AkunControler extends Controller
                 ->withInput()
                 ->with('error', 'Terjadi kesalahan, mohon periksa inputan Anda.');
         }
-
 
         $user->nama_lengkap = $request->nama_lengkap;
         $user->username = $request->username;
