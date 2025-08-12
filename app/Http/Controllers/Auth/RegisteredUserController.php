@@ -28,24 +28,32 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
-    {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+   public function store(Request $request): RedirectResponse
+{
+    $request->validate([
+        'nama_lengkap'  => ['required', 'string', 'max:30', 'regex:/^[A-Za-z\s]+$/'],
+        'username'      => ['required', 'string', 'max:15', 'unique:users,username'],
+        'jenis_kelamin' => ['required', 'in:Laki-Laki,Perempuan'],
+        'tanggal_lahir' => ['required', 'date'],
+        'no_hp'         => ['required', 'digits_between:10,12', 'numeric', 'unique:users,no_hp'],
+        'password'      => ['required', 'confirmed', Rules\Password::defaults()],
+    ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+    $user = User::create([
+        'nama_lengkap'  => $request->nama_lengkap,
+        'username'      => $request->username,
+        'jenis_kelamin' => $request->jenis_kelamin,
+        'tanggal_lahir' => $request->tanggal_lahir,
+        'no_hp'         => $request->no_hp,
+        'password'      => Hash::make($request->password),
+        'role'          => 'user',
+    ]);
 
-        event(new Registered($user));
+    event(new Registered($user));
 
-        Auth::login($user);
+    Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
-    }
+    return redirect(RouteServiceProvider::HOME);
+}
+
 }
