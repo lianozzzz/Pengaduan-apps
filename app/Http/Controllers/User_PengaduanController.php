@@ -30,7 +30,7 @@ class User_PengaduanController extends Controller
         }
 
         $pengaduans = $query->paginate(10);
-        return view('client.pengaduan.index', compact('pengaduans'));
+        return view('client.pengaduan.index', ['pengaduan' => $pengaduans]);
     }
 
     public function create()
