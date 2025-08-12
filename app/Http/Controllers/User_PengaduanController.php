@@ -12,28 +12,39 @@ use Carbon\Carbon;
 class User_PengaduanController extends Controller
 {
     public function index(Request $request)
-    {
-        $userId = Auth::id();
-        $userName = Auth::user();
+   {
+    $userName = Auth::user();
 
-        $query = Pengaduan::with('user', 'foto')
-            ->where('user_id', $userId)
-            ->latest();
+    // Query hanya data milik user login
+    $query = Pengaduan::with('user', 'foto')
+        ->where('user_id', $userName->id)
+        ->latest();
 
-
-        // Filter pencarian
-        if ($request->filled('search')) {
-            $search = $request->search;
-            $query->where(function ($q) use ($search) {
-                $q->where('judul_pengaduan', 'like', "%$search%")
-                  ->orWhere('isi_pengaduan', 'like', "%$search%");
-            });
-        }
-
-        $pengaduans = $query->paginate(10);
-        return view('client.pengaduan.index', ['pengaduan' => $pengaduans]);
+    // Filter berdasarkan status
+    if ($request->filled('status')) {
+        $query->where('status', $request->status);
     }
 
+    // Filter berdasarkan bulan
+    if ($request->filled('bulan')) {
+        $query->whereMonth('tanggal_kejadian', $request->bulan);
+    }
+
+    // Filter berdasarkan tahun
+    if ($request->filled('tahun')) {
+        $query->whereYear('tanggal_kejadian', $request->tahun);
+    }
+
+    // Filter berdasarkan tanggal lengkap
+    if ($request->filled('tanggal') && $request->filled('bulan') && $request->filled('tahun')) {
+        $tanggalLengkap = Carbon::createFromDate($request->tahun, $request->bulan, $request->tanggal)->format('Y-m-d');
+        $query->whereDate('tanggal_kejadian', $tanggalLengkap);
+    }
+
+    $pengaduan = $query->get();
+
+    return view('client.pengaduan.index', compact('pengaduan', 'userName'));
+}
     public function create()
     {
         return view('client.pengaduan.create');
