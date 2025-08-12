@@ -92,8 +92,9 @@ $pengaduan->save();
         }
     }
 
-    return redirect()->route('user_pengaduans.index')
-        ->with('success', 'Pengaduan berhasil dikirim.');
+    return redirect()->route('userpengaduan.index')
+    ->with('success', 'Pengaduan berhasil dikirim.');
+
 }
 
     public function edit($id_pengaduan)
