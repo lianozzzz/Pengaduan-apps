@@ -14,6 +14,7 @@ class User_PengaduanController extends Controller
     public function index(Request $request)
     {
         $userId = Auth::id();
+        $userName = Auth::user();
 
         $query = Pengaduan::with('user', 'foto')
             ->where('user_id', $userId)
