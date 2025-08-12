@@ -64,7 +64,7 @@ class User_PengaduanController extends Controller
         $pengaduan->judul_pengaduan = $request->judul_pengaduan;
         $pengaduan->isi_pengaduan   = $request->isi_pengaduan;
         $pengaduan->lokasi          = $request->lokasi;
-        $pengaduan->tanggal_pengaduan = Carbon::now();
+        $pengaduan->tanggal_kejadian = Carbon::now();
         $pengaduan->status = 'Menunggu';
         $pengaduan->save();
 
