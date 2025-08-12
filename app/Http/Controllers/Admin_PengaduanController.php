@@ -50,6 +50,7 @@ class Admin_PengaduanController extends Controller
         //  dd($request->all());
         $request->validate([
             'judul_pengaduan' => 'required|string|max:255',
+            'tanggal_kejadian' => 'required|date',
             'lokasi' => 'nullable|string|max:255',
             'latitude' => 'nullable|numeric',
             'longitude' => 'nullable|numeric',
@@ -62,6 +63,7 @@ class Admin_PengaduanController extends Controller
         $pengaduan = Pengaduan::create([
             'user_id' => Auth::id(),
             'judul_pengaduan' => $request->judul_pengaduan,
+             'tanggal_kejadian' => $request->tanggal_kejadian,
             'lokasi' => $request->lokasi,
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,

@@ -399,6 +399,19 @@
                                     @enderror
                                 </div>
 
+                                 <!-- Tanggal Kejadian -->
+                                <div class="mb-3">
+                                    <label for="tanggal_kejadian" class="form-label">Tanggal Kejadian</label>
+                                    <input type="date" name="tanggal_kejadian" 
+                                        class="form-control @error('tanggal_kejadian') is-invalid @enderror"
+                                        value="{{ old('tanggal_kejadian') }}" required>
+                                    @error('tanggal_kejadian')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>   
+
 
                                 <!-- Metode Lokasi -->
                                 <div class="mb-3">

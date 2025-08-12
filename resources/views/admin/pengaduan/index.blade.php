@@ -437,7 +437,7 @@
                             <div class="modal-body">
 
                                 <!-- Judul -->
-                                                                <div class="mb-3">
+                                     <div class="mb-3">
                                     <label for="judul_pengaduan" class="form-label">Judul Pengaduan</label>
                                     <select name="judul_pengaduan" 
                                         class="form-select @error('judul_pengaduan') is-invalid @enderror" 
@@ -462,6 +462,18 @@
                                     @enderror
                                 </div>
 
+                                <!-- Tanggal Kejadian -->
+                                <div class="mb-3">
+                                    <label for="tanggal_kejadian" class="form-label">Tanggal Kejadian</label>
+                                    <input type="date" name="tanggal_kejadian" 
+                                        class="form-control @error('tanggal_kejadian') is-invalid @enderror"
+                                        value="{{ old('tanggal_kejadian') }}" required>
+                                    @error('tanggal_kejadian')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>   
 
                                 <!-- Metode Lokasi -->
                                 <div class="mb-3">
