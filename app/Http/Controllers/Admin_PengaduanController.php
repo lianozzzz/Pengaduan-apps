@@ -62,7 +62,7 @@ class Admin_PengaduanController extends Controller
 
         // Simpan pengaduan
         $pengaduan = Pengaduan::create([
-            'user_no_hp'         => Auth::user()->no_hp, // ✅ pakai no_hp
+            'user_id' => Auth::id(),
             'judul_pengaduan'    => $request->judul_pengaduan,
             'tanggal_kejadian'   => $request->tanggal_kejadian,
             'lokasi'             => $request->lokasi,

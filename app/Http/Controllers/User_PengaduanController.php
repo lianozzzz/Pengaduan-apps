@@ -47,7 +47,7 @@ class User_PengaduanController extends Controller
         ]);
 
         $pengaduan = new Pengaduan();
-        $pengaduan->user_no_hp = Auth::user()->no_hp;
+        $pengaduan->user_id = Auth::id();
         $pengaduan->judul_pengaduan = $request->judul_pengaduan;
         $pengaduan->isi_pengaduan   = $request->isi_pengaduan;
         $pengaduan->lokasi          = $request->lokasi;
@@ -71,16 +71,14 @@ class User_PengaduanController extends Controller
 
     public function edit($id)
     {
-        $pengaduan = Pengaduan::where('user_no_hp', Auth::user()->no_hp)
-            ->findOrFail($id);
+        $pengaduan = Pengaduan::where('user_id', Auth::id())->findOrFail($id);
 
         return view('client.pengaduan.edit', compact('pengaduan'));
     }
 
     public function update(Request $request, $id)
     {
-        $pengaduan = Pengaduan::where('user_no_hp', Auth::user()->no_hp)
-            ->findOrFail($id);
+        $pengaduan = Pengaduan::where('user_id', Auth::id())->findOrFail($id);
 
         $request->validate([
             'judul_pengaduan' => 'required|string|max:255',
@@ -111,8 +109,7 @@ class User_PengaduanController extends Controller
 
     public function destroy($id)
     {
-        $pengaduan = Pengaduan::where('user_no_hp', Auth::user()->no_hp)
-            ->findOrFail($id);
+        $pengaduan = Pengaduan::where('user_id', Auth::id())->findOrFail($id);
 
         // Hapus foto dari storage & DB
         foreach ($pengaduan->foto as $foto) {
