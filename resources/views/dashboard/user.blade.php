@@ -83,7 +83,7 @@
                                                     <small class="text-muted">-</small>
                                                 @endif
                                             </td>
-
+                                            <td class="text-center">
                                                 
                                                 @php
                                                     $statusBadge = [

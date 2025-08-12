@@ -76,7 +76,7 @@
                                             <td>{{ $p->user->nama_lengkap ?? '-' }}</td>
                                             <td>{{ Str::limit($p->judul_pengaduan, 40) }}</td>
 
-                                           <td class="text-center">
+                                            <td class="text-center">
                                                 @if($p->tanggal_kejadian)
                                                     {{ \Carbon\Carbon::parse($p->tanggal_kejadian)->format('d M Y') }}
                                                 @else
@@ -84,6 +84,7 @@
                                                 @endif
                                             </td>
 
+                                            <td class="text-center">
                                                 
                                                 @php
                                                     $statusBadge = [
