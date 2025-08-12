@@ -22,46 +22,43 @@ class LoginController extends Controller
     }
 
 
-    public function store(Request $request)
+   public function store(Request $request)
 {
-
-    // dd($request->all());
-    $validator = Validator::make($request->all(), [
-        'nama_lengkap'    => 'required|string|max:255',
-        'jenis_kelamin'   => 'required|in:Laki-Laki,Perempuan',
-        'tanggal_lahir'   => 'required|date',
-        'no_hp'           => 'required|digits_between:10,13',
-        'username'        => 'required|string|max:255|unique:users,username',
-        'password'        => 'required|string|min:6',
+    // Validasi input
+    $request->validate([
+        'no_hp' => [
+            'required',
+            'digits_between:10,13',
+            'numeric',
+            'unique:users,no_hp', // pastikan unik di tabel users kolom no_hp
+        ],
+        'name' => 'required|string|max:255',
+        'password' => 'required|string|min:8|confirmed',
     ], [
-        'nama_lengkap.required'    => 'Nama lengkap wajib diisi.',
-        'jenis_kelamin.required'   => 'Jenis kelamin wajib dipilih.',
-        'tanggal_lahir.required'   => 'Tanggal lahir wajib diisi.',
-        'no_hp.required'           => 'No HP wajib diisi.',
-        'no_hp.digits_between'     => 'No HP harus antara 10 sampai 13 digit.',
-        'username.required'        => 'Username wajib diisi.',
-        'username.unique'          => 'Username sudah digunakan.',
-        'password.required'        => 'Password wajib diisi.',
-        'password.min'             => 'Password minimal 6 karakter.',
+        'no_hp.required' => 'Nomor HP wajib diisi.',
+        'no_hp.digits_between' => 'Nomor HP harus antara 10 sampai 13 digit.',
+        'no_hp.numeric' => 'Nomor HP hanya boleh berisi angka.',
+        'no_hp.unique' => 'Nomor HP sudah digunakan.',
+        'name.required' => 'Nama wajib diisi.',
+        'password.required' => 'Password wajib diisi.',
+        'password.min' => 'Password minimal 8 karakter.',
+        'password.confirmed' => 'Konfirmasi password tidak cocok.',
     ]);
 
-    if ($validator->fails()) {
-        return redirect()->back()->withErrors($validator)->withInput();
-    }
-
-    User::create([
-        'nama_lengkap'   => $request->nama_lengkap,
-        'jenis_kelamin'  => $request->jenis_kelamin,
-        'tanggal_lahir'  => $request->tanggal_lahir,
-        'no_hp'          => $request->no_hp,
-        'username'       => $request->username,
-        'password'       => Hash::make($request->password),
-        'role'           => 'user',
+    // Simpan user baru
+    $user = \App\Models\User::create([
+        'no_hp' => $request->no_hp,
+        'name' => $request->name,
+        'password' => bcrypt($request->password),
     ]);
 
-    return redirect()->route('login')->with('success', 'Akun kamu telah dibuat. Silakan login.');
+    // Login otomatis setelah registrasi (opsional)
+    auth()->login($user);
 
+    // Redirect ke halaman setelah login
+    return redirect()->route('dashboard')->with('success', 'Registrasi berhasil.');
 }
+
 
 public function resetPasswordManual(Request $request)
 {
