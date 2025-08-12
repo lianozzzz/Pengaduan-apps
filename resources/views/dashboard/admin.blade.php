@@ -77,14 +77,9 @@
                                             <td>{{ Str::limit($p->judul_pengaduan, 40) }}</td>
 
                                             <td class="text-center">
-                                                 @if($data->tanggal_kejadian)
-                                                        {{ \Carbon\Carbon::parse($data->tanggal_kejadian)->translatedFormat('d F Y') }}
-                                                    @else
-                                                        -
-                                                    @endif
-                                                </td>
+                                                {{ \Carbon\Carbon::parse($data->tanggal_kejadian)->translatedFormat('d F Y') }}</td>
                                             <td class="text-center">
-
+                                                
                                                 @php
                                                     $statusBadge = [
                                                         0 => 'warning',
