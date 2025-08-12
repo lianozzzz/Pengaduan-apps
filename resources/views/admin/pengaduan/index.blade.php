@@ -142,7 +142,11 @@
                                                 </td>
 
                                                 <td>
-                                                    {{ \Carbon\Carbon::parse($data->created_at)->locale('id')->translatedFormat('d F Y') }}
+                                                    @if(!empty($data->tanggal_kejadian))
+                                                        {{ \Carbon\Carbon::parse($data->tanggal_kejadian)->locale('id')->translatedFormat('d F Y') }}
+                                                    @else
+                                                        <small class="text-muted">-</small>
+                                                    @endif
                                                 </td>
 
                                                 <td>
