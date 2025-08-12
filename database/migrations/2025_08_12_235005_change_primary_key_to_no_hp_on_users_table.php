@@ -7,21 +7,22 @@ use Illuminate\Support\Facades\DB;
 
 return new class extends Migration {
     public function up(): void
-    {
-        Schema::table('users', function (Blueprint $table) {
-            // 1. Hapus AUTO_INCREMENT dari kolom id
-            DB::statement('ALTER TABLE users MODIFY id BIGINT(20) UNSIGNED');
+{
+    // 1. Ubah dulu kolom id jadi BIGINT UNSIGNED tanpa AUTO_INCREMENT
+    DB::statement('ALTER TABLE users MODIFY id BIGINT(20) UNSIGNED NOT NULL');
 
-            // 2. Hapus primary key lama
-            $table->dropPrimary();
+    // 2. Drop primary key (sekarang dari id)
+    DB::statement('ALTER TABLE users DROP PRIMARY KEY');
 
-            // 3. Pastikan kolom no_hp unik & tidak nullable
-            $table->string('no_hp', 12)->unique()->change();
+    // 3. Pastikan no_hp unik dan tidak nullable
+    Schema::table('users', function (Blueprint $table) {
+        $table->string('no_hp', 12)->unique()->change();
+    });
 
-            // 4. Jadikan no_hp primary key
-            $table->primary('no_hp');
-        });
-    }
+    // 4. Jadikan no_hp primary key
+    DB::statement('ALTER TABLE users ADD PRIMARY KEY (no_hp)');
+}
+
 
     public function down(): void
 {
