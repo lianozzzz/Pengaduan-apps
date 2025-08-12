@@ -24,11 +24,22 @@ return new class extends Migration {
     }
 
     public function down(): void
-    {
-        Schema::table('users', function (Blueprint $table) {
-            // Balikin primary key ke id
-            $table->dropPrimary();
-            DB::statement('ALTER TABLE users MODIFY id BIGINT(20) UNSIGNED AUTO_INCREMENT PRIMARY KEY');
-        });
+{
+    // Hapus primary key sekarang (no_hp)
+    DB::statement('ALTER TABLE users DROP PRIMARY KEY');
+
+    // Set primary key ke kolom id yang sudah ada, pastikan kolom id AUTO_INCREMENT
+    DB::statement('ALTER TABLE users MODIFY id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT');
+    DB::statement('ALTER TABLE users ADD PRIMARY KEY (id)');
+
+    // Ubah kolom no_hp jadi nullable (jika perlu)
+    DB::statement('ALTER TABLE users MODIFY no_hp VARCHAR(12) NULL');
+
+    // Hapus index unique no_hp jika ada (opsional)
+    $indexes = DB::select("SHOW INDEX FROM users WHERE Key_name = 'users_no_hp_unique'");
+    if (count($indexes)) {
+        DB::statement('ALTER TABLE users DROP INDEX users_no_hp_unique');
     }
+}
+
 };
