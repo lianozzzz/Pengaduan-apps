@@ -76,9 +76,14 @@
                                             <td>{{ $p->user->nama_lengkap ?? '-' }}</td>
                                             <td>{{ Str::limit($p->judul_pengaduan, 40) }}</td>
 
-                                            <td class="text-center">
-                                                {{ \Carbon\Carbon::parse($data->tanggal_kejadian)->translatedFormat('d F Y') }}</td>
-                                            <td class="text-center">
+                                           <td class="text-center">
+                                                @if($p->tanggal_kejadian)
+                                                    {{ \Carbon\Carbon::parse($p->tanggal_kejadian)->format('d M Y') }}
+                                                @else
+                                                    <small class="text-muted">-</small>
+                                                @endif
+                                            </td>
+
                                                 
                                                 @php
                                                     $statusBadge = [
