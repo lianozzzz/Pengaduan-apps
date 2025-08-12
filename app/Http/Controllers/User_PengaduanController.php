@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
 
 class User_PengaduanController extends Controller
 {
@@ -52,36 +53,48 @@ class User_PengaduanController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'judul_pengaduan' => 'required|string|max:255',
-            'isi_pengaduan'   => 'required|string',
-            'lokasi'          => 'required|string|max:255',
-            'foto.*'          => 'image|mimes:jpeg,png,jpg|max:2048'
-        ]);
+{
+    $validator = Validator::make($request->all(), [
+        'judul_pengaduan' => 'required|string|max:50|regex:/^[A-Za-z\s]+$/',
+        'tanggal_kejadian' => 'required|date',
+        'lokasi' => 'nullable|string|max:50',
+        'latitude' => 'nullable|numeric|between:-90,90',
+        'longitude' => 'nullable|numeric|between:-180,180',
+        'keterangan_kejadian' => 'required|string|max:1000',
+        'foto_kejadian' => 'nullable|array',
+        'foto_kejadian.*' => 'image|mimes:jpg,jpeg,png|max:2048',
+    ]);
 
-        $pengaduan = new Pengaduan();
-        $pengaduan->user_id = Auth::id();
-        $pengaduan->judul_pengaduan = $request->judul_pengaduan;
-        $pengaduan->isi_pengaduan   = $request->isi_pengaduan;
-        $pengaduan->lokasi          = $request->lokasi;
-        $pengaduan->tanggal_kejadian = Carbon::now();
-        $pengaduan->status = 0;
-        $pengaduan->save();
-
-        // Simpan foto jika ada
-        if ($request->hasFile('foto')) {
-            foreach ($request->file('foto') as $file) {
-                $path = $file->store('pengaduan_foto', 'public');
-                PengaduanFoto::create([
-                    'id_pengaduan'   => $pengaduan->id_pengaduan,  // gunakan id_pengaduan
-                    'foto_kejadian' => $path,                       // kolom foto_kejadian sesuai DB
-                ]);
-            }
-        }
-
-        return redirect()->route('pengaduan.index')->with('success', 'Pengaduan berhasil dikirim.');
+    if ($validator->fails()) {
+        return redirect()->back()
+            ->withErrors($validator)
+            ->withInput()
+            ->with('error', 'Terjadi kesalahan, mohon periksa inputan Anda.');
     }
+
+    $pengaduan = new Pengaduan();
+$pengaduan->user_id = Auth::id();
+$pengaduan->judul_pengaduan = $request->judul_pengaduan;
+$pengaduan->tanggal_kejadian = $request->tanggal_kejadian; // ini yang kurang
+$pengaduan->lokasi = $request->lokasi;
+$pengaduan->latitude = $request->latitude;
+$pengaduan->longitude = $request->longitude;
+$pengaduan->keterangan_kejadian = $request->keterangan_kejadian;
+$pengaduan->status = 0; // default pending
+$pengaduan->save();
+
+    if ($request->hasFile('foto_kejadian')) {
+        foreach ($request->file('foto_kejadian') as $file) {
+            $path = $file->store('foto_pengaduan', 'public');
+            $pengaduan->foto()->create([
+                'foto_kejadian' => $path
+            ]);
+        }
+    }
+
+    return redirect()->route('user_pengaduans.index')
+        ->with('success', 'Pengaduan berhasil dikirim.');
+}
 
     public function edit($id_pengaduan)
     {
