@@ -24,18 +24,18 @@ class Admin_PengaduanController extends Controller
 
     // Filter berdasarkan bulan
     if ($request->filled('bulan')) {
-        $query->whereMonth('created_at', $request->bulan);
+        $query->whereMonth('tanggal_kejadian', $request->bulan);
     }
 
     // Filter berdasarkan tahun
     if ($request->filled('tahun')) {
-        $query->whereYear('created_at', $request->tahun);
+        $query->whereYear('tanggal_kejadian', $request->tahun);
     }
 
     // Filter berdasarkan tanggal jika lengkap (tanggal, bulan, tahun)
     if ($request->filled('tanggal') && $request->filled('bulan') && $request->filled('tahun')) {
         $tanggalLengkap = Carbon::createFromDate($request->tahun, $request->bulan, $request->tanggal)->format('Y-m-d');
-        $query->whereDate('created_at', $tanggalLengkap);
+        $query->whereDate('tanggal_kejadian', $tanggalLengkap);
     }
 
     $pengaduan = $query->get();
