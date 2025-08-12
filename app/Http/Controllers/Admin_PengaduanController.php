@@ -63,7 +63,7 @@ class Admin_PengaduanController extends Controller
         $pengaduan = Pengaduan::create([
             'user_id' => Auth::id(),
             'judul_pengaduan' => $request->judul_pengaduan,
-             'tanggal_kejadian' => $request->tanggal_kejadian,
+            'tanggal_kejadian' => $request->tanggal_kejadian,
             'lokasi' => $request->lokasi,
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,

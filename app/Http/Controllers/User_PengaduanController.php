@@ -100,7 +100,7 @@ public function index(Request $request)
     $pengaduan = new Pengaduan();
     $pengaduan->user_id = Auth::id();
     $pengaduan->judul_pengaduan = $request->judul_pengaduan;
-    
+    $pengaduan->tanggal_kejadian = $request->tanggal_kejadian;
     $pengaduan->lokasi = $request->lokasi;
     $pengaduan->latitude = $request->latitude;
     $pengaduan->longitude = $request->longitude;
