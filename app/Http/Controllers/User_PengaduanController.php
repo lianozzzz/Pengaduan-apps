@@ -12,39 +12,40 @@ use Carbon\Carbon;
 class User_PengaduanController extends Controller
 {
     public function index(Request $request)
-   {
-    $userName = Auth::user();
+    {
+        $userName = Auth::user();
 
-    // Query hanya data milik user login
-    $query = Pengaduan::with('user', 'foto')
-        ->where('user_id', $userName->id)
-        ->latest();
+        // Query data milik user login
+        $query = Pengaduan::with('user', 'foto')
+            ->where('user_id', $userName->id)
+            ->latest();
 
-    // Filter berdasarkan status
-    if ($request->filled('status')) {
-        $query->where('status', $request->status);
+        // Filter berdasarkan status
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        // Filter berdasarkan bulan
+        if ($request->filled('bulan')) {
+            $query->whereMonth('tanggal_kejadian', $request->bulan);
+        }
+
+        // Filter berdasarkan tahun
+        if ($request->filled('tahun')) {
+            $query->whereYear('tanggal_kejadian', $request->tahun);
+        }
+
+        // Filter berdasarkan tanggal lengkap
+        if ($request->filled('tanggal') && $request->filled('bulan') && $request->filled('tahun')) {
+            $tanggalLengkap = Carbon::createFromDate($request->tahun, $request->bulan, $request->tanggal)->format('Y-m-d');
+            $query->whereDate('tanggal_kejadian', $tanggalLengkap);
+        }
+
+        $pengaduan = $query->get();
+
+        return view('client.pengaduan.index', compact('pengaduan', 'userName'));
     }
 
-    // Filter berdasarkan bulan
-    if ($request->filled('bulan')) {
-        $query->whereMonth('tanggal_kejadian', $request->bulan);
-    }
-
-    // Filter berdasarkan tahun
-    if ($request->filled('tahun')) {
-        $query->whereYear('tanggal_kejadian', $request->tahun);
-    }
-
-    // Filter berdasarkan tanggal lengkap
-    if ($request->filled('tanggal') && $request->filled('bulan') && $request->filled('tahun')) {
-        $tanggalLengkap = Carbon::createFromDate($request->tahun, $request->bulan, $request->tanggal)->format('Y-m-d');
-        $query->whereDate('tanggal_kejadian', $tanggalLengkap);
-    }
-
-    $pengaduan = $query->get();
-
-    return view('client.pengaduan.index', compact('pengaduan', 'userName'));
-}
     public function create()
     {
         return view('client.pengaduan.create');
@@ -73,8 +74,8 @@ class User_PengaduanController extends Controller
             foreach ($request->file('foto') as $file) {
                 $path = $file->store('pengaduan_foto', 'public');
                 PengaduanFoto::create([
-                    'pengaduan_id' => $pengaduan->id,
-                    'foto' => $path
+                    'id_pengaduan'   => $pengaduan->id_pengaduan,  // gunakan id_pengaduan
+                    'foto_kejadian' => $path,                       // kolom foto_kejadian sesuai DB
                 ]);
             }
         }
@@ -82,16 +83,20 @@ class User_PengaduanController extends Controller
         return redirect()->route('pengaduan.index')->with('success', 'Pengaduan berhasil dikirim.');
     }
 
-    public function edit($id)
+    public function edit($id_pengaduan)
     {
-        $pengaduan = Pengaduan::where('user_id', Auth::id())->findOrFail($id);
+        $pengaduan = Pengaduan::where('user_id', Auth::id())
+                              ->where('id_pengaduan', $id_pengaduan)
+                              ->firstOrFail();
 
         return view('client.pengaduan.edit', compact('pengaduan'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_pengaduan)
     {
-        $pengaduan = Pengaduan::where('user_id', Auth::id())->findOrFail($id);
+        $pengaduan = Pengaduan::where('user_id', Auth::id())
+                              ->where('id_pengaduan', $id_pengaduan)
+                              ->firstOrFail();
 
         $request->validate([
             'judul_pengaduan' => 'required|string|max:255',
@@ -106,13 +111,13 @@ class User_PengaduanController extends Controller
             'lokasi'          => $request->lokasi
         ]);
 
-        // Tambah foto baru jika ada
+        // Simpan foto baru jika ada
         if ($request->hasFile('foto')) {
             foreach ($request->file('foto') as $file) {
                 $path = $file->store('pengaduan_foto', 'public');
                 PengaduanFoto::create([
-                    'id_pengaduan' => $pengaduan->id,
-                    'foto_kejadian' => $path
+                    'id_pengaduan'   => $pengaduan->id_pengaduan,
+                    'foto_kejadian' => $path,
                 ]);
             }
         }
@@ -120,13 +125,15 @@ class User_PengaduanController extends Controller
         return redirect()->route('pengaduan.index')->with('success', 'Pengaduan berhasil diperbarui.');
     }
 
-    public function destroy($id)
+    public function destroy($id_pengaduan)
     {
-        $pengaduan = Pengaduan::where('user_id', Auth::id())->findOrFail($id);
+        $pengaduan = Pengaduan::where('user_id', Auth::id())
+                              ->where('id_pengaduan', $id_pengaduan)
+                              ->firstOrFail();
 
-        // Hapus foto dari storage & DB
+        // Hapus semua foto terkait
         foreach ($pengaduan->foto as $foto) {
-            Storage::disk('public')->delete($foto->foto);
+            Storage::disk('public')->delete($foto->foto_kejadian);
             $foto->delete();
         }
 
