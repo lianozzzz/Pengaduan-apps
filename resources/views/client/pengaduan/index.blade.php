@@ -374,30 +374,30 @@
 
                                 <!-- Judul -->
                                 <!-- Judul -->
-<div class="mb-3">
-    <label for="judul_pengaduan" class="form-label">Judul Pengaduan</label>
-    <select name="judul_pengaduan" 
-        class="form-select @error('judul_pengaduan') is-invalid @enderror" 
-        required>
-        <option value="" disabled {{ old('judul_pengaduan') == null ? 'selected' : '' }}>
-            Pilih jenis pengaduan
-        </option>
-        <option value="Pembunuhan" {{ old('judul_pengaduan') == 'Pembunuhan' ? 'selected' : '' }}>Pembunuhan</option>
-        <option value="Penganiayaan" {{ old('judul_pengaduan') == 'Penganiayaan' ? 'selected' : '' }}>Penganiayaan</option>
-        <option value="Pemerkosaan" {{ old('judul_pengaduan') == 'Pemerkosaan' ? 'selected' : '' }}>Pemerkosaan</option>
-        <option value="KDRT" {{ old('judul_pengaduan') == 'KDRT' ? 'selected' : '' }}>KDRT</option>
-        <option value="Penculikan" {{ old('judul_pengaduan') == 'Penculikan' ? 'selected' : '' }}>Penculikan</option>
-        <option value="Pencurian" {{ old('judul_pengaduan') == 'Pencurian' ? 'selected' : '' }}>Pencurian</option>
-        <option value="Kerusuhan Massal" {{ old('judul_pengaduan') == 'Kerusuhan Massal' ? 'selected' : '' }}>Kerusuhan Massal</option>
-        <option value="Peredaran Narkoba" {{ old('judul_pengaduan') == 'Peredaran Narkoba' ? 'selected' : '' }}>Peredaran Narkoba</option>
-        <option value="Penipuan" {{ old('judul_pengaduan') == 'Penipuan' ? 'selected' : '' }}>Penipuan</option>
-    </select>
-    @error('judul_pengaduan')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-    @enderror
-</div>
+                                <div class="mb-3">
+                                    <label for="judul_pengaduan" class="form-label">Judul Pengaduan</label>
+                                    <select name="judul_pengaduan" 
+                                        class="form-select @error('judul_pengaduan') is-invalid @enderror" 
+                                        required>
+                                        <option value="" disabled {{ old('judul_pengaduan') == null ? 'selected' : '' }}>
+                                            Pilih jenis pengaduan
+                                        </option>
+                                        <option value="Pembunuhan" {{ old('judul_pengaduan') == 'Pembunuhan' ? 'selected' : '' }}>Pembunuhan</option>
+                                        <option value="Penganiayaan" {{ old('judul_pengaduan') == 'Penganiayaan' ? 'selected' : '' }}>Penganiayaan</option>
+                                        <option value="Pemerkosaan" {{ old('judul_pengaduan') == 'Pemerkosaan' ? 'selected' : '' }}>Pemerkosaan</option>
+                                        <option value="KDRT" {{ old('judul_pengaduan') == 'KDRT' ? 'selected' : '' }}>KDRT</option>
+                                        <option value="Penculikan" {{ old('judul_pengaduan') == 'Penculikan' ? 'selected' : '' }}>Penculikan</option>
+                                        <option value="Pencurian" {{ old('judul_pengaduan') == 'Pencurian' ? 'selected' : '' }}>Pencurian</option>
+                                        <option value="Kerusuhan Massal" {{ old('judul_pengaduan') == 'Kerusuhan Massal' ? 'selected' : '' }}>Kerusuhan Massal</option>
+                                        <option value="Peredaran Narkoba" {{ old('judul_pengaduan') == 'Peredaran Narkoba' ? 'selected' : '' }}>Peredaran Narkoba</option>
+                                        <option value="Penipuan" {{ old('judul_pengaduan') == 'Penipuan' ? 'selected' : '' }}>Penipuan</option>
+                                    </select>
+                                    @error('judul_pengaduan')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
 
 
                                 <!-- Metode Lokasi -->
