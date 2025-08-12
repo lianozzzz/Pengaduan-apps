@@ -12,10 +12,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
-    protected $primaryKey = 'no_hp'; // Primary key pakai no_hp
-    public $incrementing = false;    // Bukan auto increment
-    protected $keyType = 'string';   // Tipe data string (kalau no_hp varchar)
-
     protected $fillable = [
         'nama_lengkap',
         'jenis_kelamin',

@@ -111,8 +111,8 @@ class User_PengaduanController extends Controller
             foreach ($request->file('foto') as $file) {
                 $path = $file->store('pengaduan_foto', 'public');
                 PengaduanFoto::create([
-                    'pengaduan_id' => $pengaduan->id,
-                    'foto' => $path
+                    'id_pengaduan' => $pengaduan->id,
+                    'foto_kejadian' => $path
                 ]);
             }
         }
