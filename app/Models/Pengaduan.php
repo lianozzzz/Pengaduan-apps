@@ -14,6 +14,7 @@ class Pengaduan extends Model
     protected $fillable = [
         'user_id',
         'judul_pengaduan',
+        'tanggal_kejadian',
         'lokasi',
         'latitude',
         'longitude',
