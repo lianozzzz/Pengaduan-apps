@@ -13,11 +13,12 @@ class User_PengaduanController extends Controller
 {
     public function index(Request $request)
     {
-        $userNoHp = Auth::user()->no_hp;
+        $userId = Auth::id();
 
         $query = Pengaduan::with('user', 'foto')
-            ->where('user_no_hp', $userNoHp)
+            ->where('user_id', $userId)
             ->latest();
+
 
         // Filter pencarian
         if ($request->filled('search')) {

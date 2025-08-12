@@ -79,7 +79,7 @@ class Admin_PengaduanController extends Controller
                 $path = $foto->store('foto_pengaduan', 'public');
 
                 PengaduanFoto::create([
-                    'id_pengaduan' => $pengaduan->id_pengaduan,
+                    'pengaduan_id' => $pengaduan->id,
                     'foto_kejadian' => $path,
                 ]);
             }
