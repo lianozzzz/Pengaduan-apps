@@ -77,7 +77,8 @@
             <h6 class="mt-4 mb-2">Lampiran Foto Kejadian</h6>
             @foreach ($p->foto as $foto)
                 <div class="mb-3">
-                    <img src="{{ asset('storage/app/public/'.$foto->foto_kejadian) }}" alt="Foto Kejadian" class="img-fluid" style="max-width:100%;">
+                    <img src="{{ asset('storage/' . $foto->foto_kejadian) }}" alt="Foto Kejadian">
+
                 </div>
             @endforeach
         @endif
