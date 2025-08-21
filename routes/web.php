@@ -63,7 +63,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
     // export berdasarkan filter
     // untuk cetak berdasarkan filter
-    Route::get('/laporan/pengaduan/cetak', [ExportController::class, 'cetakFilter'])->name('admin.pengaduan.cetak');
+    Route::get('/admin/pengaduan/cetak', [ExportController::class, 'cetakFilter'])->name('admin.pengaduan.cetak');
+
 
 
 
