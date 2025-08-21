@@ -73,7 +73,7 @@
             </table>
         </div>
 
-        @if ($p->foto && $p->foto->count())
+        <!-- @if ($p->foto && $p->foto->count())
             <h6 class="mt-4 mb-2">Lampiran Foto Kejadian</h6>
             @foreach ($p->foto as $foto)
                 <div class="mb-3">
@@ -81,7 +81,7 @@
 
                 </div>
             @endforeach
-        @endif
+        @endif -->
 
         <div class="text-end mt-5">
             <p>Hormat Saya,</p><br><br>
