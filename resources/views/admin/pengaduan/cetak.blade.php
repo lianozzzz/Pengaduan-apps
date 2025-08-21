@@ -16,6 +16,7 @@
             .container-a4{padding:10mm;width:auto;min-height:auto}
             .page-break{display:block;page-break-before:always}
         }
+        img.lampiran{max-width:100%;height:auto;border:1px solid #ddd;padding:3px;margin-bottom:10px}
     </style>
 </head>
 <body>
@@ -39,7 +40,9 @@
             Tanggal: {{ $filters['tanggal'] ?? 'Semua' }} |
             Status: @php
                 $statusLabel=[0=>'Pending',1=>'Proses',2=>'Selesai',3=>'Ditolak'];
-                echo isset($filters['status']) && $filters['status'] !== '' ? ($statusLabel[$filters['status']] ?? $filters['status']) : 'Semua';
+                echo isset($filters['status']) && $filters['status'] !== '' 
+                        ? ($statusLabel[$filters['status']] ?? $filters['status']) 
+                        : 'Semua';
             @endphp
         </p>
         <p class="text-muted">Total data: {{ $pengaduans->count() }}</p>
@@ -53,35 +56,42 @@
             <table class="table table-bordered">
                 <tr><th width="30%">Nama Pelapor</th><td>{{ $p->user->nama_lengkap ?? '-' }}</td></tr>
                 <tr><th>Judul Pengaduan</th><td>{{ $p->judul_pengaduan }}</td></tr>
-                <tr><th>Tanggal Kejadian</th><td>
-                    @if(!empty($p->tanggal_kejadian))
-                        {{ \Carbon\Carbon::parse($p->tanggal_kejadian)->translatedFormat('d F Y') }}
-                    @else
-                        {{ \Carbon\Carbon::parse($p->created_at)->translatedFormat('d F Y, H:i') }}
-                    @endif
-                </td></tr>
-                <tr><th>Status</th><td>{{ ['Pending','Proses','Selesai','Ditolak'][$p->status] ?? '-' }}</td></tr>
-                <tr><th>Lokasi Kejadian</th><td>
-                    @php
-                        $lokasiParts=[];
-                        if(!empty($p->lokasi)) $lokasiParts[]=$p->lokasi;
-                        if(!empty($p->latitude) && !empty($p->longitude)) $lokasiParts[]=$p->latitude.', '.$p->longitude;
-                        echo count($lokasiParts)?implode(', ',$lokasiParts):'-';
-                    @endphp
-                </td></tr>
+                <tr><th>Tanggal Kejadian</th>
+                    <td>
+                        @if(!empty($p->tanggal_kejadian))
+                            {{ \Carbon\Carbon::parse($p->tanggal_kejadian)->translatedFormat('d F Y') }}
+                        @else
+                            {{ \Carbon\Carbon::parse($p->created_at)->translatedFormat('d F Y, H:i') }}
+                        @endif
+                    </td>
+                </tr>
+                <tr><th>Status</th>
+                    <td>{{ ['Pending','Proses','Selesai','Ditolak'][$p->status] ?? '-' }}</td>
+                </tr>
+                <tr><th>Lokasi Kejadian</th>
+                    <td>
+                        @php
+                            $lokasiParts=[];
+                            if(!empty($p->lokasi)) $lokasiParts[]=$p->lokasi;
+                            if(!empty($p->latitude) && !empty($p->longitude)) $lokasiParts[]=$p->latitude.', '.$p->longitude;
+                            echo count($lokasiParts)?implode(', ',$lokasiParts):'-';
+                        @endphp
+                    </td>
+                </tr>
                 <tr><th>Keterangan</th><td>{{ $p->keterangan_kejadian }}</td></tr>
             </table>
         </div>
 
-        <!-- @if ($p->foto && $p->foto->count())
+        {{-- Lampiran Foto --}}
+        @if ($p->foto && $p->foto->count())
             <h6 class="mt-4 mb-2">Lampiran Foto Kejadian</h6>
             @foreach ($p->foto as $foto)
                 <div class="mb-3">
-                    <img src="{{ asset('storage/foto_pengaduan/' . $foto->foto_kejadian) }}" alt="Foto Kejadian">
-
+                    <img src="{{ asset('storage/foto_pengaduan/' . $foto->foto_kejadian) }}" 
+                         alt="Foto Kejadian" class="lampiran">
                 </div>
             @endforeach
-        @endif -->
+        @endif
 
         <div class="text-end mt-5">
             <p>Hormat Saya,</p><br><br>
