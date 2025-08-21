@@ -49,7 +49,7 @@ class Admin_PengaduanController extends Controller
 
         $pengaduan = $query->get();
 
-        return view('admin.pengaduan.index', compact('pengaduan', 'userName'));
+        return view('admin.pengaduan.cetak', compact('pengaduan', 'userName'));
     }
 
     public function store(Request $request)
