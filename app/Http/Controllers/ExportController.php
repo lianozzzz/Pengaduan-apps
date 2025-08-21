@@ -36,9 +36,11 @@ class ExportController extends Controller
         $query->where('judul_pengaduan', $request->judul_pengaduan);
     }
 
-    $pengaduan = $query->get();
+    $pengaduans = $query->get(); // pakai jamak biar sama dengan blade
+$filters = $request->all();
 
-    return view('admin.pengaduan.cetak', compact('pengaduan','filters'));
+return view('admin.pengaduan.cetak', compact('pengaduans','filters'));
+
 }
 
 }
