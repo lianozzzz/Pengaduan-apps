@@ -24,96 +24,88 @@
 
                         <div class="card-body">
                             <div class="col-md-12">
-                                <form method="GET" action="{{ route('index.pengaduan') }}">
-                                    <div class="row justify-content-center gy-2 gx-3 mb-4">
-                                        <div class="col-lg-2 col-md-3 col-sm-6">
-                                            <label class="form-label fw-bold">Status</label>
-                                            <select name="status" class="form-select" onchange="this.form.submit()">
-                                                <option value="">Semua</option>
-                                                <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>
-                                                    Pending</option>
-                                                <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>
-                                                    Proses</option>
-                                                <option value="2" {{ request('status') == '2' ? 'selected' : '' }}>
-                                                    Selesai</option>
-                                                <option value="3" {{ request('status') == '3' ? 'selected' : '' }}>
-                                                    Ditolak</option>
-                                            </select>
-                                        </div>
+        <form method="GET" action="{{ route('index.pengaduan') }}">
+            <div class="row justify-content-center gy-2 gx-3 mb-4">
+                {{-- filter status --}}
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <label class="form-label fw-bold">Status</label>
+                    <select name="status" class="form-select" onchange="this.form.submit()">
+                        <option value="">Semua</option>
+                        <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>Pending</option>
+                        <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>Proses</option>
+                        <option value="2" {{ request('status') == '2' ? 'selected' : '' }}>Selesai</option>
+                        <option value="3" {{ request('status') == '3' ? 'selected' : '' }}>Ditolak</option>
+                    </select>
+                </div>
 
-                                        <div class="col-lg-2 col-md-3 col-sm-6">
-                                            <label class="form-label fw-bold">Bulan</label>
-                                            <select name="bulan" class="form-select" onchange="this.form.submit()">
-                                                <option value="">Semua</option>
-                                                @for ($i = 1; $i <= 12; $i++)
-                                                    <option value="{{ $i }}"
-                                                        {{ request('bulan') == $i ? 'selected' : '' }}>
-                                                        {{ DateTime::createFromFormat('!m', $i)->format('F') }}
-                                                    </option>
-                                                @endfor
-                                            </select>
-                                        </div>
+                {{-- filter bulan --}}
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <label class="form-label fw-bold">Bulan</label>
+                    <select name="bulan" class="form-select" onchange="this.form.submit()">
+                        <option value="">Semua</option>
+                        @for ($i = 1; $i <= 12; $i++)
+                            <option value="{{ $i }}" {{ request('bulan') == $i ? 'selected' : '' }}>
+                                {{ DateTime::createFromFormat('!m', $i)->format('F') }}
+                            </option>
+                        @endfor
+                    </select>
+                </div>
 
-                                        <div class="col-lg-2 col-md-3 col-sm-6">
-                                            <label class="form-label fw-bold">Tanggal</label>
-                                            <select name="tanggal" class="form-select" onchange="this.form.submit()">
-                                                <option value="">Semua</option>
-                                                @for ($i = 1; $i <= 31; $i++)
-                                                    <option value="{{ $i }}"
-                                                        {{ request('tanggal') == $i ? 'selected' : '' }}>
-                                                        {{ $i }}
-                                                    </option>
-                                                @endfor
-                                            </select>
-                                        </div>
+                {{-- filter tanggal --}}
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <label class="form-label fw-bold">Tanggal</label>
+                    <select name="tanggal" class="form-select" onchange="this.form.submit()">
+                        <option value="">Semua</option>
+                        @for ($i = 1; $i <= 31; $i++)
+                            <option value="{{ $i }}" {{ request('tanggal') == $i ? 'selected' : '' }}>
+                                {{ $i }}
+                            </option>
+                        @endfor
+                    </select>
+                </div>
 
-                                        <div class="col-lg-2 col-md-3 col-sm-6">
-                                            <label class="form-label fw-bold">Tahun</label>
-                                            <select name="tahun" class="form-select" onchange="this.form.submit()">
-                                                <option value="">Semua</option>
-                                                @for ($y = date('Y'); $y >= 2020; $y--)
-                                                    <option value="{{ $y }}"
-                                                        {{ request('tahun') == $y ? 'selected' : '' }}>
-                                                        {{ $y }}
-                                                    </option>
-                                                @endfor
-                                            </select>
-                                        </div>
+                {{-- filter tahun --}}
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <label class="form-label fw-bold">Tahun</label>
+                    <select name="tahun" class="form-select" onchange="this.form.submit()">
+                        <option value="">Semua</option>
+                        @for ($y = date('Y'); $y >= 2020; $y--)
+                            <option value="{{ $y }}" {{ request('tahun') == $y ? 'selected' : '' }}>
+                                {{ $y }}
+                            </option>
+                        @endfor
+                    </select>
+                </div>
 
-                                        <div class="col-lg-3 col-md-4 col-sm-6">
-                                            <label class="form-label fw-bold">Judul Pengaduan</label>
-                                            <select name="judul_pengaduan" class="form-select" onchange="this.form.submit()">
-                                                <option value="">Semua</option>
-                                                <option value="Pembunuhan" {{ request('judul_pengaduan')=='Pembunuhan'?'selected':'' }}>Pembunuhan</option>
-                                                <option value="Penganiayaan" {{ request('judul_pengaduan')=='Penganiayaan'?'selected':'' }}>Penganiayaan</option>
-                                                <option value="Pemerkosaan" {{ request('judul_pengaduan')=='Pemerkosaan'?'selected':'' }}>Pemerkosaan</option>
-                                                <option value="KDRT" {{ request('judul_pengaduan')=='KDRT'?'selected':'' }}>KDRT</option>
-                                                <option value="Penculikan" {{ request('judul_pengaduan')=='Penculikan'?'selected':'' }}>Penculikan</option>
-                                                <option value="Pencurian" {{ request('judul_pengaduan')=='Pencurian'?'selected':'' }}>Pencurian</option>
-                                                <option value="Kerusuhan Massal" {{ request('judul_pengaduan')=='Kerusuhan Massal'?'selected':'' }}>Kerusuhan Massal</option>
-                                                <option value="Peredaran Narkoba" {{ request('judul_pengaduan')=='Peredaran Narkoba'?'selected':'' }}>Peredaran Narkoba</option>
-                                                <option value="Penipuan" {{ request('judul_pengaduan')=='Penipuan'?'selected':'' }}>Penipuan</option>
-                                            </select>
-                                        </div>
+                {{-- filter judul pengaduan --}}
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <label class="form-label fw-bold">Judul Pengaduan</label>
+                    <select name="judul_pengaduan" class="form-select" onchange="this.form.submit()">
+                        <option value="">Semua</option>
+                        <option value="Pembunuhan" {{ request('judul_pengaduan')=='Pembunuhan'?'selected':'' }}>Pembunuhan</option>
+                        <option value="Penganiayaan" {{ request('judul_pengaduan')=='Penganiayaan'?'selected':'' }}>Penganiayaan</option>
+                        <option value="Pemerkosaan" {{ request('judul_pengaduan')=='Pemerkosaan'?'selected':'' }}>Pemerkosaan</option>
+                        <option value="KDRT" {{ request('judul_pengaduan')=='KDRT'?'selected':'' }}>KDRT</option>
+                        <option value="Penculikan" {{ request('judul_pengaduan')=='Penculikan'?'selected':'' }}>Penculikan</option>
+                        <option value="Pencurian" {{ request('judul_pengaduan')=='Pencurian'?'selected':'' }}>Pencurian</option>
+                        <option value="Kerusuhan Massal" {{ request('judul_pengaduan')=='Kerusuhan Massal'?'selected':'' }}>Kerusuhan Massal</option>
+                        <option value="Peredaran Narkoba" {{ request('judul_pengaduan')=='Peredaran Narkoba'?'selected':'' }}>Peredaran Narkoba</option>
+                        <option value="Penipuan" {{ request('judul_pengaduan')=='Penipuan'?'selected':'' }}>Penipuan</option>
+                    </select>
+                </div>
 
-                                        {{-- Tombol Cetak Berdasarkan Filter (tetap di dalam form yang sama) --}}
-                                        <form method="GET" action="{{ route('index.pengaduan') }}">
-                                        {{-- input filter lain --}}
-                                        <div class="col-lg-2 col-md-3 col-sm-6 d-flex align-items-end">
-                                            <button type="submit"
-                                                    class="btn btn-success w-100"
-                                                    formaction="{{ route('admin.pengaduan.cetak') }}"
-                                                    formtarget="_blank">
-                                                🖨️ Cetak Berdasarkan Filter
-                                            </button>
-                                        </div>
-                                        </form>
-
-
-
-                                    </div>
-                                </form>
-                            </div>
+                {{-- Tombol Cetak Filter --}}
+                <div class="col-lg-2 col-md-3 col-sm-6 d-flex align-items-end">
+                    <button type="submit"
+                            class="btn btn-success w-100"
+                            formaction="{{ route('admin.pengaduan.cetak') }}"
+                            formtarget="_blank">
+                        🖨️ Cetak Berdasarkan Filter
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
 
 
 
