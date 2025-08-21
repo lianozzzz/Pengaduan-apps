@@ -97,6 +97,8 @@
                                         </div>
 
                                         {{-- Tombol Cetak Berdasarkan Filter (tetap di dalam form yang sama) --}}
+                                        <form method="GET" action="{{ route('index.pengaduan') }}">
+                                        {{-- input filter lain --}}
                                         <div class="col-lg-2 col-md-3 col-sm-6 d-flex align-items-end">
                                             <button type="submit"
                                                     class="btn btn-success w-100"
@@ -105,6 +107,8 @@
                                                 🖨️ Cetak Berdasarkan Filter
                                             </button>
                                         </div>
+                                        </form>
+
 
 
                                     </div>
