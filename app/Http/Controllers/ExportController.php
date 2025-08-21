@@ -38,7 +38,7 @@ class ExportController extends Controller
 
     $pengaduan = $query->get();
 
-    return view('admin.pengaduan.cetak', compact('pengaduans','filters'));
+    return view('admin.pengaduan.cetak', compact('pengaduan','filters'));
 }
 
 }
