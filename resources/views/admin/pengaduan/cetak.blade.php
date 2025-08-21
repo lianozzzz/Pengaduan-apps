@@ -47,10 +47,39 @@
         </p>
         <p class="text-muted">Total data: {{ $pengaduans->count() }}</p>
     </div>
+
+    {{-- 📌 Tabel Ringkasan Semua Data --}}
+    <table class="table table-bordered table-sm">
+        <thead class="table-light">
+            <tr>
+                <th>No</th>
+                <th>Nama Pelapor</th>
+                <th>Judul Pengaduan</th>
+                <th>Alamat Kejadian</th>
+                <th>Tanggal Aduan</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($pengaduans as $i => $p)
+                <tr>
+                    <td>{{ $i+1 }}</td>
+                    <td>{{ $p->user->nama_lengkap ?? '-' }}</td>
+                    <td>{{ $p->judul_pengaduan }}</td>
+                    <td>{{ $p->lokasi ?? '-' }}</td>
+                    <td>{{ \Carbon\Carbon::parse($p->created_at)->translatedFormat('d F Y') }}</td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="5" class="text-center">Tidak ada data</td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
 </div>
 
+{{-- 📌 Detail Per Pengaduan (1 halaman per kasus) --}}
 @forelse($pengaduans as $idx => $p)
-    @if($idx>0)<div class="page-break"></div>@endif
+    <div class="page-break"></div>
     <div class="container-a4">
         <div class="mb-2">
             <table class="table table-bordered">
