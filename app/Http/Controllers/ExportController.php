@@ -18,38 +18,38 @@ class ExportController extends Controller
     // Cetak laporan berdasarkan filter
     public function cetakFilter(Request $request)
 {
-     $query = Pengaduan::with('user', 'foto');
+    $query = Pengaduan::with('user', 'foto');
 
-        // filter judul
-        if ($request->judul_pengaduan) {
-            $query->where('judul_pengaduan', 'like', '%'.$request->judul_pengaduan.'%');
-        }
+    // filter judul
+    if ($request->judul_pengaduan) {
+        $query->where('judul_pengaduan', 'like', '%'.$request->judul_pengaduan.'%');
+    }
 
-        // filter tahun
-        if ($request->tahun) {
-            $query->whereYear('created_at', $request->tahun);
-        }
+    // filter tahun (pakai tanggal_kejadian kalau ada)
+    if ($request->tahun) {
+        $query->whereYear('tanggal_kejadian', $request->tahun);
+    }
 
-        // filter bulan
-        if ($request->bulan) {
-            $query->whereMonth('created_at', $request->bulan);
-        }
+    // filter bulan
+    if ($request->bulan) {
+        $query->whereMonth('tanggal_kejadian', $request->bulan);
+    }
 
-        // filter tanggal
-        if ($request->tanggal) {
-            $query->whereDate('created_at', $request->tanggal);
-        }
+    // filter tanggal
+    if ($request->tanggal) {
+        $query->whereDate('tanggal_kejadian', $request->tanggal);
+    }
 
-        // filter status
-        if ($request->status !== null && $request->status !== '') {
-            $query->where('status', $request->status);
-        }
+    // filter status
+    if ($request->status !== null && $request->status !== '') {
+        $query->where('status', $request->status);
+    }
 
-    $pengaduans = $query->get(); // pakai jamak biar sama dengan blade
-$filters = $request->all();
+    $pengaduans = $query->get();
+    $filters = $request->all();
 
-return view('admin.pengaduan.cetak', compact('pengaduans','filters'));
-
+    return view('admin.pengaduan.cetak', compact('pengaduans','filters'));
 }
+
 
 }
