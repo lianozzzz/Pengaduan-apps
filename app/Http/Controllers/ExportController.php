@@ -18,23 +18,32 @@ class ExportController extends Controller
     // Cetak laporan berdasarkan filter
     public function cetakFilter(Request $request)
 {
-    $query = Pengaduan::with(['user', 'foto']);
+     $query = Pengaduan::with('user', 'foto');
 
-    if ($request->status !== null && $request->status !== '') {
-        $query->where('status', $request->status);
-    }
-    if ($request->bulan) {
-        $query->whereMonth('created_at', $request->bulan);
-    }
-    if ($request->tanggal) {
-        $query->whereDay('created_at', $request->tanggal);
-    }
-    if ($request->tahun) {
-        $query->whereYear('created_at', $request->tahun);
-    }
-    if ($request->judul_pengaduan) {
-        $query->where('judul_pengaduan', $request->judul_pengaduan);
-    }
+        // filter judul
+        if ($request->judul_pengaduan) {
+            $query->where('judul_pengaduan', 'like', '%'.$request->judul_pengaduan.'%');
+        }
+
+        // filter tahun
+        if ($request->tahun) {
+            $query->whereYear('created_at', $request->tahun);
+        }
+
+        // filter bulan
+        if ($request->bulan) {
+            $query->whereMonth('created_at', $request->bulan);
+        }
+
+        // filter tanggal
+        if ($request->tanggal) {
+            $query->whereDate('created_at', $request->tanggal);
+        }
+
+        // filter status
+        if ($request->status !== null && $request->status !== '') {
+            $query->where('status', $request->status);
+        }
 
     $pengaduans = $query->get(); // pakai jamak biar sama dengan blade
 $filters = $request->all();
