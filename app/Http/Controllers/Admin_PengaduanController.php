@@ -22,6 +22,11 @@ class Admin_PengaduanController extends Controller
             $query->where('status', $request->status);
         }
 
+        // Filter berdasarkan judul (kategori tindak kriminalitas)
+        if ($request->filled('judul_pengaduan')) {
+            $query->where('judul_pengaduan', $request->judul_pengaduan);
+        }
+
         // Filter berdasarkan bulan
         if ($request->filled('bulan')) {
             $query->whereMonth('tanggal_kejadian', $request->bulan);

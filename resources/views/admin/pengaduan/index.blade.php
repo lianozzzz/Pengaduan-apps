@@ -80,6 +80,33 @@
                                             </select>
                                         </div>
 
+                                        <div class="col-lg-3 col-md-4 col-sm-6">
+                                            <label class="form-label fw-bold">Judul Pengaduan</label>
+                                            <select name="judul_pengaduan" class="form-select" onchange="this.form.submit()">
+                                                <option value="">Semua</option>
+                                                <option value="Pembunuhan" {{ request('judul_pengaduan')=='Pembunuhan'?'selected':'' }}>Pembunuhan</option>
+                                                <option value="Penganiayaan" {{ request('judul_pengaduan')=='Penganiayaan'?'selected':'' }}>Penganiayaan</option>
+                                                <option value="Pemerkosaan" {{ request('judul_pengaduan')=='Pemerkosaan'?'selected':'' }}>Pemerkosaan</option>
+                                                <option value="KDRT" {{ request('judul_pengaduan')=='KDRT'?'selected':'' }}>KDRT</option>
+                                                <option value="Penculikan" {{ request('judul_pengaduan')=='Penculikan'?'selected':'' }}>Penculikan</option>
+                                                <option value="Pencurian" {{ request('judul_pengaduan')=='Pencurian'?'selected':'' }}>Pencurian</option>
+                                                <option value="Kerusuhan Massal" {{ request('judul_pengaduan')=='Kerusuhan Massal'?'selected':'' }}>Kerusuhan Massal</option>
+                                                <option value="Peredaran Narkoba" {{ request('judul_pengaduan')=='Peredaran Narkoba'?'selected':'' }}>Peredaran Narkoba</option>
+                                                <option value="Penipuan" {{ request('judul_pengaduan')=='Penipuan'?'selected':'' }}>Penipuan</option>
+                                            </select>
+                                        </div>
+
+                                        {{-- Tombol Cetak Berdasarkan Filter (tetap di dalam form yang sama) --}}
+                                        <div class="col-lg-2 col-md-3 col-sm-6 d-flex align-items-end">
+                                            <button type="submit"
+                                                    class="btn btn-success w-100"
+                                                    formaction="{{ route('admin.pengaduan.cetak') }}"
+                                                    formtarget="_blank">
+                                                🖨️ Cetak Berdasarkan Filter
+                                            </button>
+                                        </div>
+
+
                                     </div>
                                 </form>
                             </div>

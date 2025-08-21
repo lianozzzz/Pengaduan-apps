@@ -61,6 +61,10 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     // export
     Route::get('/laporan/pengaduan/{id_pengaduan}', [ExportController::class, 'cetakLaporan'])->name('laporan.export');
 
+    // export berdasarkan filter
+    Route::get('/laporan/pengaduan/filter', [ExportController::class, 'cetakFilter'])->name('laporan.filter');
+
+
 });
 
 
